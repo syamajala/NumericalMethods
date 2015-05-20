@@ -5,8 +5,8 @@ using namespace std;
 
 class Radiation: public ExplicitEuler {
 protected:
-  double alpha = 4.0*10.0e-13;
-  double T_a4 = pow(250.0, 4);
+  static constexpr double alpha = 4.0*10.0e-13;
+  static constexpr double T_a4 = pow(250.0, 4);
 public:
   Radiation(double initial_condition, double step_size, double steps) :
     ExplicitEuler(initial_condition, step_size, steps) {
@@ -26,6 +26,7 @@ int main() {
   Radiation *r = new Radiation(initial_condition, del_t, 5);
   r->iterate();
   r->print_table();
+  delete r;
   
   return 0;
 }

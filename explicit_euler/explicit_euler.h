@@ -12,6 +12,7 @@ class ExplicitEuler {
   vector<double> f_n;
  public:
   ExplicitEuler(double initial_condition, double step_size, int steps);
+  virtual ~ExplicitEuler() {};
   virtual double f_nplusone(double t_n, double T_n) = 0;
   double y_nplusone(double y_n, double f_n);  
   void iterate();

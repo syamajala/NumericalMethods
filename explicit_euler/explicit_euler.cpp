@@ -3,6 +3,13 @@
 
 using namespace std;
 
+/*
+ * Solve the initial value ODE:
+ * y' = f(t, y), y(t_0) = y_0
+ * using the finite difference equation:
+ * y_(n+1) = y_n + del_t*f_n
+ */
+
 ExplicitEuler::ExplicitEuler(double initial_condition, double step_size, int steps)
   : initial_condition(initial_condition), step_size(step_size), steps(steps) {
 }
