@@ -42,3 +42,4 @@ double Iterative::iterate_false_position() {
 
     return c;
 }
+

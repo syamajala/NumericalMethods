@@ -1,5 +1,5 @@
 CXX ?= g++
-CXXFLAGS ?= -g -Wall -Wcpp -Wno-deprecated -std=c++11
+CXXFLAGS ?= -g -Wall -Wcpp -Wno-deprecated -std=c++11 -I../lib
 LDFLAGS ?= 
 
 all: radiation
@@ -14,4 +14,4 @@ explicit_euler.o: explicit_euler.cpp explicit_euler.h
 	$(CXX) $(CXXFLAGS) -c explicit_euler.cpp
 
 clean:
-	rm -f *.o *~
+	rm -f *.o *~ radiation

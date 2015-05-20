@@ -1,5 +1,6 @@
-#include "explicit_euler.h"
 #include <iostream>
+#include "explicit_euler.h"
+#include "lib.h"
 
 using namespace std;
 
@@ -36,6 +37,7 @@ void ExplicitEuler::iterate() {
 void ExplicitEuler::print_table() {
   int cur_step = 0;
   while(cur_step <= this->steps) {
+    cout.precision(dbl::digits10);
     cout << "n = " << cur_step*step_size << "\tf_" << cur_step << " = " << f_n[cur_step]
 	 << "\ty_" << cur_step << " = " << y_n[cur_step] << endl;
     cur_step++;

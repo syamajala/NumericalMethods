@@ -23,10 +23,8 @@ int main() {
   double initial_condition = 2500.0;
   double del_t = 2.0;
 
-  Radiation *r = new Radiation(initial_condition, del_t, 5);
-  r->iterate();
-  r->print_table();
-  delete r;
-  
+  Radiation r = Radiation(initial_condition, del_t, 5);
+  r.iterate();
+  r.print_table();
   return 0;
 }
