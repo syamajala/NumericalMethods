@@ -11,4 +11,5 @@ class Iterative {
   virtual double f(double x) = 0;
   double iterate_bisection();
   double iterate_false_position();
+  double iterate_secant();
 };

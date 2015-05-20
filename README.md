@@ -4,4 +4,6 @@ Engineers and Scientists](http://www.amazon.com/Numerical-Methods-Engineers-Scie
 Currently includes:
 - Bisection root finding method
 - False position root finding method
+- Newton's method
+- Secant method
 - Implicit Euler method for first order nonlinear differential equations

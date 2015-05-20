@@ -39,14 +39,15 @@ int main() {
   double a = deg_to_rad(30.0);
   double b = deg_to_rad(40.0);
   double e = .000001;
-  Iterative_Link il = Iterative_Link(a, b, e);
-  double r = il.iterate_false_position();
   cout.precision(dbl::digits10);
-  cout << rad_to_deg(r) << endl;
+
+  Iterative_Link il = Iterative_Link(a, b, e);
+  cout << "False Position: " << rad_to_deg(il.iterate_false_position()) << endl;
+  cout << "Bisection: " << rad_to_deg(il.iterate_bisection()) << endl;
+  cout << "Secant: " << rad_to_deg(il.iterate_secant()) << endl;
 
   Newton_Link nl = Newton_Link(a, e);
-  r = nl.iterate();
-  cout << rad_to_deg(r) << endl;
+  cout << "Newton: " << rad_to_deg(nl.iterate()) << endl;
   
   return 0;
 }

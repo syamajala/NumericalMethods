@@ -43,3 +43,22 @@ double Iterative::iterate_false_position() {
     return c;
 }
 
+double Iterative::iterate_secant() {
+  double t = 0.0;
+  double x_i = this->a;
+  double x_ip1 = this->b;
+
+  double dg_xi = (f(x_ip1) - f(x_i))/(x_ip1-x_i);
+  t = x_ip1;
+  x_ip1 = x_i - (f(x_i)/dg_xi);
+  x_i = t;
+  
+  while(abs(x_ip1 - x_i) >= e) {
+    dg_xi = (f(x_ip1) - f(x_i))/(x_ip1-x_i);
+    t = x_ip1;
+    x_ip1 = x_i - (f(x_i)/dg_xi);
+    x_i = t;
+  }
+
+  return x_ip1;
+}
