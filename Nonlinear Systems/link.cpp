@@ -42,8 +42,8 @@ int main() {
   cout.precision(dbl::digits10);
 
   Iterative_Link il = Iterative_Link(a, b, e);
-  cout << "False Position: " << rad_to_deg(il.iterate_false_position()) << endl;
   cout << "Bisection: " << rad_to_deg(il.iterate_bisection()) << endl;
+  cout << "False Position: " << rad_to_deg(il.iterate_false_position()) << endl;
   cout << "Secant: " << rad_to_deg(il.iterate_secant()) << endl;
 
   Newton_Link nl = Newton_Link(a, e);

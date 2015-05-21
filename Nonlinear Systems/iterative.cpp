@@ -4,43 +4,48 @@
 Iterative::Iterative(double a, double b, double e) : a(a), b(b), e(e) {};
 
 double Iterative::iterate_bisection() {
-  double c = (this->a+this->b)/2.0;
-  while(abs(b - a) >= e) {
-    if(f(a)*f(c) < 0)
-      b = c;
-    else if (f(a)*f(c) > 0)
-      a = c;
-    else if (f(a)*f(c) == 0)
+  double p = a;
+  double q = b;
+  double r = (this->a+this->b)/2.0;
+  
+  while(abs(q - p) >= e) {
+    if(f(p)*f(r) < 0)
+      q = r;
+    else if (f(p)*f(r) > 0)
+      p = r;
+    else if (f(p)*f(r) == 0)
       break;
-    c = (a+b)/2.0;
+    r = (p+q)/2.0;
   }
 
-  return c;
+  return r;
 }
 
 double Iterative::iterate_false_position() {
   double dg = 0.0;
-  double c = 0.0;
+  double p = a;
+  double q = b;
+  double r = 0.0;
   double fa = 0.0;
   double fb = 0.0;
   double fc = 0.0;
     
-  while (abs(b-a) >= e) {
-      fb = f(b);
-      fa = f(a);
-      dg = (fb - fa)/(b-a);
-      c = b - fb/dg;
-      fc = f(c);
+  while (abs(q - p) >= e) {
+      fb = f(q);
+      fa = f(p);
+      dg = (fb - fa)/(q-p);
+      r = q - fb/dg;
+      fc = f(r);
 
       if(fa*fc < 0)
-	b = c;
+	q = r;
       else if (fa*fc > 0)
-	a = c;
+	p = r;
       else if (fa*fc == 0)
 	break;      
     }
 
-    return c;
+    return r;
 }
 
 double Iterative::iterate_secant() {
