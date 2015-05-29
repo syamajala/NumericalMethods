@@ -6,4 +6,5 @@ Currently includes:
 - False position root finding method
 - Newton's method
 - Secant method
+- Direct fit polynomial interpolation
 - Implicit Euler method for first order nonlinear differential equations
