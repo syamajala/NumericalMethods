@@ -1,5 +1,6 @@
 #include <iostream>
 #include "direct_fit.h"
+#include "lagrange.h"
 
 int main() {
   vector<float> x; 
@@ -16,7 +17,11 @@ int main() {
     fx.push_back(1.0/_x);
   }
   
-  DirectFit xinv = DirectFit(x, fx);
-  function<float (float)> fit_f = xinv.fit(3.44, deg);
-  cout << fit_f(3.44) << endl;
+  DirectFit xinv_directfit = DirectFit(x, fx);
+  function<float (float)> fit_f = xinv_directfit.fit(3.44, deg);
+  cout << "Direct Fit: " << fit_f(3.44) << endl;
+
+  Lagrange xinv_lagrange = Lagrange(x, fx);
+  function<float (float)> fit_f1 = xinv_lagrange.fit(3.44, deg);
+  cout << "Lagrange: " << fit_f1(3.44) << endl;
 }

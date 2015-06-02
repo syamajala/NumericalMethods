@@ -15,7 +15,7 @@ public:
   }
 };
 
-class Iterative_Link: public Link, public Iterative {
+class Iterative_Link: public Link, public Iterative<double> {
 public:
   Iterative_Link(double a, double b, double e) : Iterative(a, b, e) {};
   double f(double x) {
@@ -23,7 +23,7 @@ public:
   }
 };
 
-class Newton_Link: public Link, public Newton {
+class Newton_Link: public Link, public Newton<double> {
 public:
   Newton_Link(double initial_guess, double e) : Newton(initial_guess, e) {};
   double f(double x) {

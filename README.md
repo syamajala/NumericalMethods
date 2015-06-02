@@ -7,4 +7,5 @@ Currently includes:
 - Newton's method
 - Secant method
 - Direct fit polynomial interpolation
+- Lagrange interpolation
 - Implicit Euler method for first order nonlinear differential equations
