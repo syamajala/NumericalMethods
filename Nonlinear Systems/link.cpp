@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-#include "lib.h"
+#include "radians.h"
 #include "iterative.h"
 #include "newton.h"
 

@@ -1,5 +1,5 @@
 CXX ?= g++
-CXXFLAGS ?= -g -Wall -Wcpp -Wno-deprecated -std=c++11 -I../lib/
+CXXFLAGS ?= -g -Wall -Wcpp -Wno-deprecated -std=c++11 -I../include/
 LDFLAGS ?=
 
 link: link.o
