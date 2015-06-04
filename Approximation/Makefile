@@ -1,11 +1,11 @@
 CXX ?= g++
-CXXFLAGS ?= -g -Wall -Wcpp -Wno-deprecated --std=c++11
+CXXFLAGS ?= -g -Wall -Wcpp -Wno-deprecated -I../include --std=c++11
 LDFLAGS ?= -llapack -lANN
 
 xinv: xinv.o
 	$(CXX) $(LDFLAGS) -o xinv xinv.o
 
-xinv.o: xinv.cpp direct_fit.h lagrange.h
+xinv.o: xinv.cpp direct_fit.h lagrange.h neville.h
 	$(CXX) $(CXXFLAGS) -c xinv.cpp
 
 clean:

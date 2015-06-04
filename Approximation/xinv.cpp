@@ -1,6 +1,9 @@
 #include <iostream>
 #include "direct_fit.h"
 #include "lagrange.h"
+#include "neville.h"
+
+using namespace std;
 
 int main() {
   vector<float> x;
@@ -24,4 +27,8 @@ int main() {
   Lagrange<float> xinv_lagrange(x, fx);
   function<float (float)> fit_f1 = xinv_lagrange.fit(3.44, deg);
   cout << "Lagrange: " << fit_f1(3.44) << endl;
+
+  Neville<float> xinv_neville(x, fx);
+  function<float (float)> fit_f2 = xinv_neville.fit(3.44, deg);
+  cout << "Neville: " << fit_f2(3.44) << endl;
 }
