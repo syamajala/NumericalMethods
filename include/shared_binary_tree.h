@@ -14,11 +14,11 @@ class SharedBinaryTree {
  public:
   SharedBinaryTree() { root = nullptr; };
  SharedBinaryTree(NodePtr<T> root) : root(root) {};
- SharedBinaryTree(T val) : root(NodePtr<T>(new Node<T>(val))) {};
+ SharedBinaryTree(T val) : root(make_shared<Node<T>>(val)) {};
 
-  NodePtr<T> insert_child(T val, bool left = true, NodePtr<T> node = nullptr) {
-    NodePtr<T> child(new Node<T>(val));
-
+  NodePtr<T> insert_child(T val, bool left = true, NodePtr<T> node = nullptr) {    
+    auto child = make_shared<Node<T>>(val);
+    
     if(root == nullptr) {
       root = child;
       return child;
@@ -36,7 +36,7 @@ class SharedBinaryTree {
 				 NodePtr<T> rnode,
 				 bool lnode_rchild = true,
 				 bool rnode_lchild = true) {
-    NodePtr<T> child(new Node<T>(val));
+    auto child = make_shared<Node<T>>(val);
     if(lnode_rchild && rnode_lchild) {
       lnode->set_child(child, false);
       rnode->set_child(child, true);
@@ -54,5 +54,5 @@ class SharedBinaryTree {
 /*   SharedBinaryTree<double> tree(0.0); */
 /*   DBLNODEPTR lchild1 = tree.insert_child(1.0); */
 /*   DBLNODEPTR rchild1 = tree.insert_child(2.0); */
-/*   DBLNODEPTR shared_child = tree.insert_child(3.0, false, lchild1);   */
+/*   DBLNODEPTR shared_child = tree.insert_child(3.0, false, lchild1); */
 /* } */

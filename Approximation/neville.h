@@ -24,7 +24,7 @@ class Neville : public Fit<T> {
     vector< NodePtr<T> > zero_nodes;
     for(auto i : nnIdx) {
       sx.push_back(this->x[i]);
-      zero_nodes.push_back(NodePtr<T>(new Node<T>(this->f[i])));
+      zero_nodes.push_back(make_shared<Node<T>>(this->f[i]));
     }
     nodes.push_back(zero_nodes);
 
@@ -37,7 +37,7 @@ class Neville : public Fit<T> {
 	T c = (sx[i+n] - sx[i]);
 	T val = (a - b)/c;
 	cout << "f(" << i << ", " << n << ") = " << val << endl; 
-	n_nodes.push_back(NodePtr<T>(new Node<T>(val)));
+	n_nodes.push_back(make_shared<Node<T>>(val));
       }
       nodes.push_back(n_nodes);
       depth++;
