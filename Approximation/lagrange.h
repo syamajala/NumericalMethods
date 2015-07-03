@@ -8,7 +8,7 @@ class Lagrange : public Fit<T> {
  Lagrange(const vector<T> &x, const vector<T> &f) : Fit<T>(x, f) {};
   function<T (T)> fit(const T point, const int deg) {
     vector<int> nnIdx = this->neighbors(point, deg);
-  
+
     function<T (T)> poly = [&, nnIdx, deg](T _x) -> T {
       T s = 0;
       for(int i = 0; i < deg+1; i++) {

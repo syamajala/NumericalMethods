@@ -6,7 +6,7 @@
  * A node can have more than one parent.
  *
  *          D
- *         / 
+ *         /
  *       B-
  *     /   \
  *  A -     E

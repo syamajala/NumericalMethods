@@ -16,14 +16,14 @@ class SharedBinaryTree {
  SharedBinaryTree(NodePtr<T> root) : root(root) {};
  SharedBinaryTree(T val) : root(make_shared<Node<T>>(val)) {};
 
-  NodePtr<T> insert_child(T val, bool left = true, NodePtr<T> node = nullptr) {    
+  NodePtr<T> insert_child(T val, bool left = true, NodePtr<T> node = nullptr) {
     auto child = make_shared<Node<T>>(val);
-    
+
     if(root == nullptr) {
       root = child;
       return child;
     }
-    
+
     if(node)
       node->set_child(child, left);
     else
@@ -40,13 +40,13 @@ class SharedBinaryTree {
     if(lnode_rchild && rnode_lchild) {
       lnode->set_child(child, false);
       rnode->set_child(child, true);
-    }    
+    }
   }
 };
 
 /* #include "shared_binary_tree.h" */
 /* #include "shared_binary_node.h" */
- 
+
 /* typedef SharedBinaryNode<double> DBLNODE ; */
 /* typedef shared_ptr<DBLNODE> DBLNODEPTR; */
 

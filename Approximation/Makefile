@@ -5,7 +5,7 @@ LDFLAGS ?= -llapack -lANN
 xinv: xinv.o
 	$(CXX) $(LDFLAGS) -o xinv xinv.o
 
-xinv.o: xinv.cpp direct_fit.h lagrange.h neville.h
+xinv.o: xinv.cpp direct_fit.h lagrange.h neville.h difference.h newton.h
 	$(CXX) $(CXXFLAGS) -c xinv.cpp
 
 clean:

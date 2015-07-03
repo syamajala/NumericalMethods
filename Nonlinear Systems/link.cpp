@@ -48,6 +48,6 @@ int main() {
 
   Newton_Link nl = Newton_Link(a, e);
   cout << "Newton: " << rad_to_deg(nl.iterate()) << endl;
-  
+
   return 0;
 }

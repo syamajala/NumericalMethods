@@ -24,7 +24,7 @@ class DirectFit : public Fit<T> {
     vector<T> sorted_f;
 
     vector<int> nnIdx = this->neighbors(point, deg);
-  
+
     for(int i = 0; i < deg+1; i++) {
       sorted_f.push_back(this->f[nnIdx[i]]);
       for(int j = 0; j < deg+1; j++) {
@@ -41,7 +41,7 @@ class DirectFit : public Fit<T> {
 
     LAPACKE_sgetrs(LAPACK_COL_MAJOR, TRANS, deg+1, NRHS, &(M[0]), deg+1,
 		   &(IPIV[0]), &(sorted_f[0]), deg+1);
-  
+
     function<T (T)> poly = [sorted_f](T _x) -> T {
       float s = 0;
       for(size_t i = 0; i < sorted_f.size(); i++)

@@ -12,12 +12,12 @@ class Iterative {
  public:
   Iterative(T a, T b, T e) : a(a), b(b), e(e) {};
   virtual T f(T x) = 0;
-    
+
   T iterate_bisection() {
     T p = a;
     T q = b;
     T r = (this->a+this->b)/2.0;
-  
+
     while(abs(q - p) >= e) {
       if(f(p)*f(r) < 0)
 	q = r;
@@ -39,7 +39,7 @@ class Iterative {
     T fa = 0.0;
     T fb = 0.0;
     T fc = 0.0;
-    
+
     while (abs(q - p) >= e) {
       fb = f(q);
       fa = f(p);
@@ -52,7 +52,7 @@ class Iterative {
       else if (fa*fc > 0)
 	p = r;
       else if (fa*fc == 0)
-	break;      
+	break;
     }
 
     return r;
@@ -67,7 +67,7 @@ class Iterative {
     t = x_ip1;
     x_ip1 = x_i - (f(x_i)/dg_xi);
     x_i = t;
-  
+
     while(abs(x_ip1 - x_i) >= e) {
       dg_xi = (f(x_ip1) - f(x_i))/(x_ip1-x_i);
       t = x_ip1;
