@@ -4,14 +4,15 @@ Engineers and Scientists](http://www.amazon.com/Numerical-Methods-Engineers-Scie
 Requires openblas-lapack and ANN.
 
 Currently includes:
-###Nonlinear systems
-- Bisection root finding method
-- False position root finding method
-- Newton's method
-- Secant method
-###Interpolation
-- Direct fit polynomial interpolation
-- Lagrange interpolation
-- Neville's algoritm
-###ODES
-- Implicit Euler method for first order nonlinear differential equations
+### Nonlinear systems
+* Bisection root finding method
+* False position root finding method
+* Newton's method
+* Secant method
+### Interpolation
+* Direct fit polynomial interpolation
+* Lagrange interpolation
+* Neville's algoritm
+### ODEs
+* Implicit Euler method
+* Modified Midpoint method
