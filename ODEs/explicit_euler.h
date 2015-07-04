@@ -15,15 +15,16 @@ using namespace std;
 
 template <class T>
 class ExplicitEuler : public IVP<T> {
+ protected:
+  T y_nplusone(int n) {
+    return this->y_n[n] + this->step_size*this->f_n[n];
+  };
+
  public:
  ExplicitEuler(T y, T f, T step_size, int steps) :
   IVP<T>(step_size, steps) {
     this->y_n.push_back(y);
     this->f_n.push_back(f);
-  };
-
-  T y_nplusone(int n) {
-    return this->y_n[n] + this->step_size*this->f_n[n];
   };
 
   void iterate()  {
