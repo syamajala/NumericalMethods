@@ -21,19 +21,13 @@ class ModifiedMidpoint : public IVP<T> {
     return this->y_n[n] + (this->step_size)*fp_nplusonehalf(n);
   };
 
- public:
- ModifiedMidpoint(T y, T f, T step_size, int steps) :
-  IVP<T>(step_size, steps) {
-    this->y_n.push_back(y);
-    this->f_n.push_back(f);
+  T y_nplusone(int n) {
+    return yc_nplusone(n);
   };
 
-  void iterate() {
-    for(int n = 1; n <= this->steps; n++) {
-      this->y_n.push_back(yc_nplusone(n-1));
-      this->f_n.push_back(this->derivative(n*this->step_size, this->y_n[n]));
-    }
-  };
+ public:
+ ModifiedMidpoint(T y, T f, T step_size, int steps) :
+  IVP<T>(y, f, step_size, steps) {};
 };
 
 #endif

@@ -11,13 +11,23 @@ class IVP {
  protected:
   vector<T> y_n;
   vector<T> f_n;
-  T initial_condition;
   T step_size;
   int steps;
+  virtual T y_nplusone(int n) = 0;
  public:
- IVP(T step_size, int steps) :
-  step_size(step_size), steps(steps) {};
-  virtual void iterate() = 0;
+ IVP(T y, T f, T step_size, int steps) :
+  step_size(step_size), steps(steps) {
+    y_n.push_back(y);
+    f_n.push_back(f);
+  };
+
+  virtual void iterate()  {
+    for(int n = 1; n <= this->steps; n++) {
+      this->y_n.push_back(y_nplusone(n-1));
+      this->f_n.push_back(this->derivative(n*this->step_size, this->y_n[n]));
+    }
+  };
+
   virtual T derivative(T t_n, T y_n) = 0;
 
   friend ostream& operator<< (ostream &os, const IVP<T> &obj)  {
@@ -28,7 +38,6 @@ class IVP {
     }
     return os;
   };
-
 };
 
 #endif

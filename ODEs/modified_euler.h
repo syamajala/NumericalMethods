@@ -17,23 +17,17 @@ class ModifiedEuler : public IVP<T> {
     return this->derivative(n*this->step_size, yp_nplusone(n));
   };
 
-  T yc_plusone(int n) {
+  T yc_nplusone(int n) {
     return this->y_n[n] + (this->step_size/2.0)*(this->f_n[n] + fp_nplusone(n));
+  };
+
+  T y_nplusone(int n) {
+    return yc_nplusone(n);
   };
 
  public:
  ModifiedEuler(T y, T f, T step_size, int steps) :
-  IVP<T>(step_size, steps) {
-    this->y_n.push_back(y);
-    this->f_n.push_back(f);
-  };
-
-  void iterate() {
-    for(int n = 1; n <= this->steps; n++) {
-      this->y_n.push_back(yc_plusone(n-1));
-      this->f_n.push_back(this->derivative(n*this->step_size, this->y_n[n]));
-    }
-  };
+  IVP<T>(y, f, step_size, steps) {};
 };
 
 #endif

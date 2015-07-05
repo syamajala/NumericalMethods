@@ -3,6 +3,7 @@
 #include "explicit_euler.h"
 #include "modified_midpoint.h"
 #include "modified_euler.h"
+#include "runge_kutta.h"
 
 static constexpr double alpha = 4.0*10.0e-13;
 static constexpr double T_a4 = pow(250.0, 4);
@@ -43,6 +44,19 @@ public:
   };
 };
 
+template <class E>
+class RungeKuttaRadiation : public RungeKutta<E> {
+public:
+  RungeKuttaRadiation(E initial_condition, E step_size, int steps) :
+    RungeKutta<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
+                     step_size, steps) {};
+
+  E derivative(E t_n, E T_n) {
+    return -alpha*(pow(T_n, 4) - T_a4);
+  };
+};
+
+
 int main() {
   double initial_condition = 2500.0;
   double del_t = 2.0;
@@ -61,7 +75,13 @@ int main() {
   cout << "Modified Euler: \n";
   ModifiedEulerRadiation<double> euler_r(initial_condition, del_t, steps);
   euler_r.iterate();
-  cout << euler_r;
+  cout << euler_r << endl;
+
+  cout << "Runge Kutta: \n";
+  RungeKuttaRadiation<double> rk_r(initial_condition, del_t, steps);
+  rk_r.iterate();
+  cout << rk_r;
+
   return 0;
 }
 

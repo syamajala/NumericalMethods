@@ -22,16 +22,7 @@ class ExplicitEuler : public IVP<T> {
 
  public:
  ExplicitEuler(T y, T f, T step_size, int steps) :
-  IVP<T>(step_size, steps) {
-    this->y_n.push_back(y);
-    this->f_n.push_back(f);
-  };
-
-  void iterate()  {
-    for(int n = 1; n <= this->steps; n++) {
-      this->y_n.push_back(y_nplusone(n-1));
-      this->f_n.push_back(this->derivative(n*this->step_size, this->y_n[n]));
-    }
-  };
+  IVP<T>(y, f, step_size, steps) {};
 };
- #endif
+
+#endif
