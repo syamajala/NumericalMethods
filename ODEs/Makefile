@@ -8,7 +8,7 @@ radiation: radiation.o
 	$(CXX) $(LDFLAGS) -o radiation radiation.o
 
 radiation.o: radiation.cpp explicit_euler.h modified_midpoint.h modified_euler.h \
-	runge_kutta.h IVP.h
+	runge_kutta.h extrapolated_midpoint.h IVP.h
 	$(CXX) $(CXXFLAGS) -c radiation.cpp
 
 clean:

@@ -20,3 +20,5 @@ Currently includes:
   * Implicit Euler method
   * Modified Midpoint method
   * Modified Euler method
+  * Fourth order Runge Kutta
+  * Extrapolated Modified Midpoint method

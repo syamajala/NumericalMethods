@@ -21,6 +21,8 @@ class IVP {
     f_n.push_back(f);
   };
 
+  virtual ~IVP() {};
+
   virtual void iterate()  {
     for(int n = 1; n <= this->steps; n++) {
       this->y_n.push_back(y_nplusone(n-1));

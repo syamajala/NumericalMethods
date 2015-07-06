@@ -1,0 +1,39 @@
+#ifndef EXTRAPOLATED_MIDPOINT_H
+#define EXTRAPOLATED_MIDPOINT_H
+
+#include <vector>
+#include "IVP.h"
+
+using namespace std;
+
+template <class T>
+class ExtrapolatedMidpoint : public IVP<T> {
+ protected:
+  T M;
+  T h;
+
+  T z_i(int i, int n) {
+    switch (i) {
+    case 0:
+      return this->y_n[n];
+    case 1: {
+      T z_0 = z_i(0, n);
+      return z_0 + h*this->derivative(n*this->step_size, z_0);
+    }
+    default:
+      return z_i(i-2, n) + 2*h*this->derivative((i-1)*h + n*this->step_size, z_i(i-1, n));
+    }
+  };
+
+ public:
+ ExtrapolatedMidpoint(T y, T f, T step_size, int steps, int M) :
+  IVP<T>(y, f, step_size, steps), M(M), h(step_size/M) {};
+
+  T y_nplusone(int n) {
+    T z_M = z_i(M, n);
+    return 0.5*(z_i(M-1, n) + z_M + h*this->derivative(this->step_size + n*this->step_size,
+                                                       z_M));
+  };
+};
+
+#endif

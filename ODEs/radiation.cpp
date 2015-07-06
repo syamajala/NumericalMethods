@@ -4,6 +4,7 @@
 #include "modified_midpoint.h"
 #include "modified_euler.h"
 #include "runge_kutta.h"
+#include "extrapolated_midpoint.h"
 
 static constexpr double alpha = 4.0*10.0e-13;
 static constexpr double T_a4 = pow(250.0, 4);
@@ -56,6 +57,17 @@ public:
   };
 };
 
+template <class E>
+class ExtrapolatedMidpointRadiation : public ExtrapolatedMidpoint<E> {
+public:
+  ExtrapolatedMidpointRadiation(E initial_condition, E step_size, int steps, int M) :
+    ExtrapolatedMidpoint<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
+                            step_size, steps, M) {};
+
+  E derivative(E t_n, E T_n) {
+    return -alpha*(pow(T_n, 4) - T_a4);
+  };
+};
 
 int main() {
   double initial_condition = 2500.0;
@@ -80,7 +92,12 @@ int main() {
   cout << "Runge Kutta: \n";
   RungeKuttaRadiation<double> rk_r(initial_condition, del_t, steps);
   rk_r.iterate();
-  cout << rk_r;
+  cout << rk_r << endl;
+
+  cout << "Extrapolated Modified Midpoint: \n";
+  ExtrapolatedMidpointRadiation<double> exmidpoint_r(initial_condition, del_t, steps, 16);
+  exmidpoint_r.iterate();
+  cout << exmidpoint_r;
 
   return 0;
 }
