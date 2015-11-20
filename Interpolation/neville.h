@@ -1,12 +1,16 @@
+#ifndef NEVILLE_H
+#define NEVILLE_H
+
 #include <map>
 #include "fit.h"
-#include "difference.h"
 
 using namespace std;
 
 template <class T>
-class Neville : public Fit<T>, Difference<T> {
+class Neville : public Fit<T> {
  private:
+  vector<vector<T>> table;
+
   void build_table(const T point, const int deg) {
     vector<int> nnIdx = this->neighbors(point, deg);
     vector<T> sx;
@@ -23,11 +27,11 @@ class Neville : public Fit<T>, Difference<T> {
       vector<T> n_nodes;
 
       for(size_t i = 0; i < this->table[n-1].size() - 1; i++) {
-	T a = (point - sx[i])*(this->table[n-1][i+1]);
-	T b = (point - sx[i+n])*(this->table[n-1][i]);
-	T c = (sx[i+n] - sx[i]);
-	T val = (a - b)/c;
-	n_nodes.push_back(val);
+        T a = (point - sx[i])*(this->table[n-1][i+1]);
+        T b = (point - sx[i+n])*(this->table[n-1][i]);
+        T c = (sx[i+n] - sx[i]);
+        T val = (a - b)/c;
+        n_nodes.push_back(val);
       }
       this->table.push_back(n_nodes);
     }
@@ -45,3 +49,5 @@ class Neville : public Fit<T>, Difference<T> {
     return poly;
   };
 };
+
+#endif

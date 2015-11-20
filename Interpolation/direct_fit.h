@@ -1,5 +1,7 @@
+#ifndef DIRECT_FIT_H
+#define DIRECT_FIT_H
+
 #include <cmath>
-#include <cblas.h>
 #include <lapacke.h>
 #include "fit.h"
 
@@ -28,8 +30,8 @@ class DirectFit : public Fit<T> {
     for(int i = 0; i < deg+1; i++) {
       sorted_f.push_back(this->f[nnIdx[i]]);
       for(int j = 0; j < deg+1; j++) {
-	float p = this->x[nnIdx[j]];
-	M.push_back(pow(p, i));
+        float p = this->x[nnIdx[j]];
+        M.push_back(pow(p, i));
       }
     }
 
@@ -45,10 +47,12 @@ class DirectFit : public Fit<T> {
     function<T (T)> poly = [sorted_f](T _x) -> T {
       float s = 0;
       for(size_t i = 0; i < sorted_f.size(); i++)
-	s += sorted_f[i]*pow(_x, i);
+        s += sorted_f[i]*pow(_x, i);
       return s;
     };
 
     return poly;
   };
 };
+
+#endif

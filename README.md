@@ -15,6 +15,7 @@ Currently includes:
   * Direct fit polynomial interpolation
   * Lagrange interpolation
   * Neville's algorithm
+  * Divided difference
 
 ### ODEs
   * Implicit Euler method

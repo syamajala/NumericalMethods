@@ -1,3 +1,6 @@
+#ifndef ITERATIVE_H
+#define ITERATIVE_H
+
 #include <cmath>
 
 using namespace std;
@@ -29,7 +32,7 @@ class Iterative {
     }
 
     return r;
-  }
+  };
 
   T iterate_false_position() {
     T dg = 0.0;
@@ -56,7 +59,7 @@ class Iterative {
     }
 
     return r;
-  }
+  };
 
   T iterate_secant() {
     T t = 0.0;
@@ -76,5 +79,7 @@ class Iterative {
     }
 
     return x_ip1;
-  }
+  };
 };
+
+#endif
