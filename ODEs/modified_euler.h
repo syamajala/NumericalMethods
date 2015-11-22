@@ -4,8 +4,6 @@
 #include <vector>
 #include "IVP.h"
 
-using namespace std;
-
 template <class T>
 class ModifiedEuler : public IVP<T> {
  protected:

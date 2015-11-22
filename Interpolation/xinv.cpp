@@ -1,10 +1,13 @@
 #include <iostream>
-#include "direct_fit.h"
+// #include "direct_fit.h"
 #include "lagrange.h"
 #include "neville.h"
 #include "divided_difference.h"
+#include "newton.h"
 
-using namespace std;
+using std::cout;
+using std::endl;
+using std::function;
 
 int main() {
   vector<float> x;
@@ -21,9 +24,9 @@ int main() {
     fx.push_back(1.0/_x);
   }
 
-  DirectFit<float> xinv_directfit(x, fx);
-  function<float (float)> fit_f = xinv_directfit.fit(3.44, deg);
-  cout << "Direct Fit: " << fit_f(3.44) << endl;
+  // DirectFit<float> xinv_directfit(x, fx);
+  // function<float (float)> fit_f = xinv_directfit.fit(3.44, deg);
+  // cout << "Direct Fit: " << fit_f(3.44) << endl;
 
   Lagrange<float> xinv_lagrange(x, fx);
   function<float (float)> fit_f1 = xinv_lagrange.fit(3.44, deg);
@@ -37,6 +40,18 @@ int main() {
   function<float (float)> fit_f3 = xinv_difference.fit(3.44, deg);
   cout << "Divided Difference: " << fit_f3(3.44) << endl;
 
-  // ForwardDifference<float> xinv_forward(x, fx, 0.1);
-  // function<float (float)> fit_f4 = xinv_forward.fit(3.44, deg);
+  x.clear();
+  fx.clear();
+
+  start = 3.1;
+  points = 9;
+  float step = 0.1;
+  for(int i = 0; i < points; i++) {
+    x.push_back(start+i*step);
+    fx.push_back(1/x.back());
+  }
+
+  ForwardDifference<float> xinv_forward(x, fx, step);
+  function<float (float)> fit_f4 = xinv_forward.fit(3.44, deg);
+  cout << "Forward Difference: " << fit_f4(3.44) << endl;
 }

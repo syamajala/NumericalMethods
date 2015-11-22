@@ -1,11 +1,13 @@
 #ifndef NEWTON_SYSTEM_H
 #define NEWTON_SYSTEM_H
 
+#include <functional>
 #include <vector>
 #include <algorithm>
 #include <lapacke.h>
 
-using namespace std;
+using std::vector;
+using std::multiplies;
 
 template <class T>
 class NewtonSystems {

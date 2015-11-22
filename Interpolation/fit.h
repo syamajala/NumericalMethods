@@ -5,7 +5,8 @@
 #include <vector>
 #include <ANN/ANN.h>
 
-using namespace std;
+using std::vector;
+using std::function;
 
 template <class T>
 class Fit {
@@ -46,4 +47,5 @@ class Fit {
   }
 
 };
+
 #endif

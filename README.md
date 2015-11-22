@@ -16,6 +16,7 @@ Currently includes:
   * Lagrange interpolation
   * Neville's algorithm
   * Divided difference
+  * Newton forward difference
 
 ### ODEs
   * Implicit Euler method

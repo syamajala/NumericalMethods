@@ -9,7 +9,7 @@ using namespace std;
 template <class R>
 class Link {
 protected:
-  const R alpha = deg_to_rad(40.0);
+  const R alpha = deg_to_rad<R>(40.0);
 public:
   R f(R x) {
     return (5.0/3.0)*cos(this->alpha)-(5.0/2.0)*cos(x)+(11.0/6.0)-cos(this->alpha-x);
@@ -38,18 +38,18 @@ public:
 };
 
 int main() {
-  double a = deg_to_rad(30.0);
-  double b = deg_to_rad(40.0);
+  double a = deg_to_rad<double>(30.0);
+  double b = deg_to_rad<double>(40.0);
   double e = .000001;
   cout.precision(15);
 
   Iterative_Link<double> il(a, b, e);
-  cout << "Bisection: " << rad_to_deg(il.iterate_bisection()) << endl;
-  cout << "False Position: " << rad_to_deg(il.iterate_false_position()) << endl;
-  cout << "Secant: " << rad_to_deg(il.iterate_secant()) << endl;
+  cout << "Bisection: " << rad_to_deg<double>(il.iterate_bisection()) << endl;
+  cout << "False Position: " << rad_to_deg<double>(il.iterate_false_position()) << endl;
+  cout << "Secant: " << rad_to_deg<double>(il.iterate_secant()) << endl;
 
   Newton_Link<double> nl(a, e);
-  cout << "Newton: " << rad_to_deg(nl.iterate()) << endl;
+  cout << "Newton: " << rad_to_deg<double>(nl.iterate()) << endl;
 
   return 0;
 }

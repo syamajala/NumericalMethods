@@ -32,7 +32,9 @@ public:
 };
 
 int main() {
-  vector<double> initial_guesses = { deg_to_rad(30), deg_to_rad(0), deg_to_rad(220) };
+  vector<double> initial_guesses = { deg_to_rad<double>(30.0),
+                                     deg_to_rad<double>(0.0),
+                                     deg_to_rad<double>(220.0) };
   vector<double> e(2, 0.000001);
   Systems_Link<double> slink(initial_guesses, e);
   slink.iterate();

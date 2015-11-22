@@ -3,8 +3,6 @@
 
 #include "fit.h"
 
-using namespace std;
-
 template <class T>
 class DividedDifference : public Fit<T> {
 

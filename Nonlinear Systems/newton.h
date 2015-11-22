@@ -1,8 +1,6 @@
 #ifndef NEWTON_H
 #define NEWTON_H
 
-using namespace std;
-
 template <class T>
 class Newton {
  private:

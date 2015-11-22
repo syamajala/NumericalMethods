@@ -1,7 +1,5 @@
 #include "fit.h"
 
-using namespace std;
-
 template <class T>
 class Lagrange : public Fit<T> {
  public:

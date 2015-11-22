@@ -4,8 +4,6 @@
 #include <vector>
 #include "IVP.h"
 
-using namespace std;
-
 template <class T>
 class ModifiedMidpoint : public IVP<T> {
  protected:

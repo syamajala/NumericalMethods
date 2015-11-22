@@ -4,8 +4,6 @@
 #include <map>
 #include "fit.h"
 
-using namespace std;
-
 template <class T>
 class Neville : public Fit<T> {
  private:

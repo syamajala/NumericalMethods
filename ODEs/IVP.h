@@ -4,7 +4,10 @@
 #include <vector>
 #include <boost/format.hpp>
 
-using namespace std;
+using std::vector;
+using std::cout;
+using std::endl;
+using std::ostream;
 
 template <class T>
 class IVP {

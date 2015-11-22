@@ -2,11 +2,13 @@
 
 using namespace std;
 
-double rad_to_deg(double x) {
+template<typename T>
+T rad_to_deg(T x) {
   return x*(180.0/M_PI);
 }
 
-const double deg_to_rad(double x) {
+template<typename T>
+const T deg_to_rad(T x) {
   return x*(M_PI/180.0);
 }
 

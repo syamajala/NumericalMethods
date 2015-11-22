@@ -11,8 +11,6 @@
 #include <vector>
 #include "IVP.h"
 
-using namespace std;
-
 template <class T>
 class ExplicitEuler : public IVP<T> {
  protected:
