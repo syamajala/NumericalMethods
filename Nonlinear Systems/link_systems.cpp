@@ -9,10 +9,10 @@ static constexpr double r3 = 8.0;
 static constexpr double r4 = 4.0;
 
 template <class R>
-class Systems_Link : public NewtonSystems<R> {
+class Systems_Link : public NonlinearSystems::NewtonSystems<R> {
 public:
   Systems_Link(vector<R> initial_guesses, vector<R> e) :
-    NewtonSystems<R>(initial_guesses, e) {};
+    NonlinearSystems::NewtonSystems<R>(initial_guesses, e) {};
 
   vector<R> f(vector<R> &x) {
     vector<R> fx = {

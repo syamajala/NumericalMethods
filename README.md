@@ -18,6 +18,9 @@ Currently includes:
   * Divided difference
   * Newton forward difference
 
+### Integration
+  * Direct fit
+
 ### ODEs
   * Implicit Euler method
   * Modified Midpoint method

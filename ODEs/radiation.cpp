@@ -10,10 +10,10 @@ static constexpr double alpha = 4.0*10.0e-13;
 static constexpr double T_a4 = pow(250.0, 4);
 
 template <class E>
-class ExplicitRadiation : public ExplicitEuler<E> {
+class ExplicitRadiation : public ODEs::ExplicitEuler<E> {
 public:
   ExplicitRadiation(E initial_condition, E step_size, int steps) :
-    ExplicitEuler<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
+    ODEs::ExplicitEuler<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
                      step_size, steps) {};
 
   E derivative(E t_n, E T_n) {
@@ -22,10 +22,10 @@ public:
 };
 
 template <class E>
-class ModifiedMidpointRadiation : public ModifiedMidpoint<E> {
+class ModifiedMidpointRadiation : public ODEs::ModifiedMidpoint<E> {
 public:
   ModifiedMidpointRadiation(E initial_condition, E step_size, int steps) :
-    ModifiedMidpoint<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
+    ODEs::ModifiedMidpoint<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
                         step_size, steps) {};
 
   E derivative(E t_n, E T_n) {
@@ -34,10 +34,10 @@ public:
 };
 
 template <class E>
-class ModifiedEulerRadiation : public ModifiedEuler<E> {
+class ModifiedEulerRadiation : public ODEs::ModifiedEuler<E> {
 public:
   ModifiedEulerRadiation(E initial_condition, E step_size, int steps) :
-    ModifiedEuler<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
+    ODEs::ModifiedEuler<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
                      step_size, steps) {};
 
   E derivative(E t_n, E T_n) {
@@ -46,10 +46,10 @@ public:
 };
 
 template <class E>
-class RungeKuttaRadiation : public RungeKutta<E> {
+class RungeKuttaRadiation : public ODEs::RungeKutta<E> {
 public:
   RungeKuttaRadiation(E initial_condition, E step_size, int steps) :
-    RungeKutta<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
+    ODEs::RungeKutta<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
                      step_size, steps) {};
 
   E derivative(E t_n, E T_n) {
@@ -58,10 +58,10 @@ public:
 };
 
 template <class E>
-class ExtrapolatedMidpointRadiation : public ExtrapolatedMidpoint<E> {
+class ExtrapolatedMidpointRadiation : public ODEs::ExtrapolatedMidpoint<E> {
 public:
   ExtrapolatedMidpointRadiation(E initial_condition, E step_size, int steps, int M) :
-    ExtrapolatedMidpoint<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
+    ODEs::ExtrapolatedMidpoint<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
                             step_size, steps, M) {};
 
   E derivative(E t_n, E T_n) {

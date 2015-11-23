@@ -1,59 +1,60 @@
-#ifndef NEWTON_H
-#define NEWTON_H
+#ifndef INTERPOLATION_NEWTON_H
+#define INTERPOLATION_NEWTON_H
 
 #include "binomial_coefficients.h"
 #include "fit.h"
 
-template <class T>
-class Newton : public Fit<T> {
- protected:
-  vector<vector<T>> table;
+namespace Interpolation {
+  template <class T>
+    class Newton : public Fit<T> {
+  protected:
+    vector<vector<T>> table;
 
-  void build_table(const int deg) {
-    table.push_back(this->x);
-    table.push_back(this->f);
+    void build_table(const int deg) {
+      table.push_back(this->x);
+      table.push_back(this->f);
 
-    for(int n = 2; n <= deg+1; n++) {
-      vector<T> n_nodes;
-      for(size_t i = 0; i < table[n-1].size() - 1; i++) {
-        n_nodes.push_back(table[n-1][i+1] - table[n-1][i]);
-      }
-      table.push_back(n_nodes);
-    }
-  };
-
- public:
- Newton(const vector<T> &x, const vector<T> &f) : Fit<T>(x, f) {};
-};
-
-template <class T>
-class ForwardDifference : public Newton<T> {
- protected:
-  T step_size;
-
- public:
- ForwardDifference(const vector<T> &x, const vector<T> &f, T step_size) :
-  Newton<T>(x, f), step_size(step_size) {};
-
-  function<T (T)> fit(const T point, const int deg) {
-    this->build_table(deg);
-
-    function<T (T)> poly = [&, deg](T _x) -> T {
-      vector<int> nnIdx = this->neighbors(_x, 0);
-      int x0_idx = nnIdx[0];
-      T s = (_x - this->x[x0_idx])/(this->step_size);
-      T r = this->table[1][x0_idx];
       for(int n = 2; n <= deg+1; n++) {
-        T coeff = binomial_coefficient<T>(s, n-1);
-        r += (coeff*this->table[n][x0_idx]);
+        vector<T> n_nodes;
+        for(size_t i = 0; i < table[n-1].size() - 1; i++) {
+          n_nodes.push_back(table[n-1][i+1] - table[n-1][i]);
+        }
+        table.push_back(n_nodes);
       }
-      return r;
     };
 
-    return poly;
+  public:
+  Newton(const vector<T> &x, const vector<T> &f) : Fit<T>(x, f) {};
   };
 
-};
+  template <class T>
+    class ForwardDifference : public Newton<T> {
+  protected:
+    T step_size;
 
+  public:
+  ForwardDifference(const vector<T> &x, const vector<T> &f, T step_size) :
+    Newton<T>(x, f), step_size(step_size) {};
+
+    function<T (T)> fit(const T point, const int deg) {
+      this->build_table(deg);
+
+      function<T (T)> poly = [&, deg](T _x) -> T {
+        vector<int> nnIdx = this->neighbors(_x, 0);
+        int x0_idx = nnIdx[0];
+        T s = (_x - this->x[x0_idx])/(this->step_size);
+        T r = this->table[1][x0_idx];
+        for(int n = 2; n <= deg+1; n++) {
+          T coeff = binomial_coefficient<T>(s, n-1);
+          r += (coeff*this->table[n][x0_idx]);
+        }
+        return r;
+      };
+
+      return poly;
+    };
+
+  };
+}
 
 #endif

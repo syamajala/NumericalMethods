@@ -4,7 +4,7 @@
 #include "iterative.h"
 #include "newton.h"
 
-using namespace std;
+using std::cout;
 
 template <class R>
 class Link {
@@ -17,18 +17,18 @@ public:
 };
 
 template <class R>
-class Iterative_Link: public Link<R>, public Iterative<R> {
+class Iterative_Link: public Link<R>, public NonlinearSystems::Iterative<R> {
 public:
-  Iterative_Link(R a, R b, R e) : Iterative<R>(a, b, e) {};
+  Iterative_Link(R a, R b, R e) : NonlinearSystems::Iterative<R>(a, b, e) {};
   R f(R x) {
     return Link<R>::f(x);
   }
 };
 
 template <class R>
-class Newton_Link: public Link<R>, public Newton<R> {
+class Newton_Link: public Link<R>, public NonlinearSystems::Newton<R> {
 public:
-  Newton_Link(R initial_guess, R e) : Newton<R>(initial_guess, e) {};
+  Newton_Link(R initial_guess, R e) : NonlinearSystems::Newton<R>(initial_guess, e) {};
   R f(R x) {
     return Link<R>::f(x);
   }
