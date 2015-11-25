@@ -17,13 +17,14 @@ Currently includes:
   * Neville's algorithm
   * Divided difference
   * Newton forward difference
+  * Newton backward difference
 
 ### Integration
   * Direct fit
 
 ### ODEs
   * Implicit Euler method
-  * Modified Midpoint method
+  * Modified midpoint method
   * Modified Euler method
   * Fourth order Runge Kutta
-  * Extrapolated Modified Midpoint method
+  * Extrapolated modified midpoint method

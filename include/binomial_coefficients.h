@@ -14,4 +14,12 @@ T binomial_coefficient(T s, int i) {
   return r/factorial(i);
 }
 
+template<typename T>
+T nonstandard_binomial_coefficient(T s, int i) {
+  T r = s;
+  for(int t = 1; t <= i-1; t++)
+    r *= s+t;
+  return r/factorial(i);
+}
+
 #endif

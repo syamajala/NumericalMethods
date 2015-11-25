@@ -54,4 +54,8 @@ int main() {
   Interpolation::ForwardDifference<float> xinv_forward(x, fx, step);
   function<float (float)> fit_f4 = xinv_forward.fit(3.44, deg);
   cout << "Forward Difference: " << fit_f4(3.44) << endl;
+
+  Interpolation::BackwardDifference<float> xinv_backward(x, fx, step);
+  function<float (float)> fit_f5 = xinv_backward.fit(3.44, deg);
+  cout << "Backward Difference: " << fit_f5(3.44) << endl;
 }
