@@ -38,9 +38,9 @@ namespace NonlinearSystems {
       int IPIV[dfx.size()];
 
       LAPACKE_dgetrf(LAPACK_ROW_MAJOR, dfx.size(), dfx.size(), &(flat_dfx[0]),
-                     dfx.size(), &IPIV[0]);
+                     dfx.size()+2, &IPIV[0]);
 
-      LAPACKE_dgetrs(LAPACK_ROW_MAJOR, TRANS, dfx.size(), NRHS, &(flat_dfx[0]), dfx.size(),
+      LAPACKE_dgetrs(LAPACK_ROW_MAJOR, TRANS, dfx.size(), NRHS, &(flat_dfx[0]), dfx.size()+2,
                      &(IPIV[0]), &(r[0]), r.size());
 
       return r;
