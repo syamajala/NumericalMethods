@@ -19,6 +19,9 @@ Currently includes:
   * Newton forward difference
   * Newton backward difference
 
+### Differentiation
+  * Direct fit
+
 ### Integration
   * Direct fit
 
