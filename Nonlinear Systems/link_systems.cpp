@@ -7,6 +7,7 @@ static constexpr double r1 = 10.0;
 static constexpr double r2 = 6.0;
 static constexpr double r3 = 8.0;
 static constexpr double r4 = 4.0;
+static const double theta_4 = deg_to_rad<double>(220.0);
 
 template <class R>
 class Systems_Link : public NonlinearSystems::NewtonSystems<R> {
@@ -16,16 +17,17 @@ public:
 
   vector<R> f(vector<R> &x) {
     vector<R> fx = {
-      r2*cos(x[0]) + r3*cos(x[1]) + r4*cos(x[2]) - r1,
-      r2*sin(x[0]) + r3*sin(x[1]) + r4*sin(x[2])
+      r2*cos(x[0]) + r3*cos(x[1]) + r4*cos(theta_4) - r1,
+      r2*sin(x[0]) + r3*sin(x[1]) + r4*sin(theta_4)
     };
     return fx;
   };
 
+  // Must be in column major format
   vector<vector<R>> df(vector<R>& x) {
     vector<vector<R>> dfx = {
-      { -r2*sin(x[0]), -r3*sin(x[1]) },
-      { r2*cos(x[0]), r3*cos(x[1]) }
+      { -r2*sin(x[0]),  r2*cos(x[0])},
+      {  -r3*sin(x[1]), r3*cos(x[1]) }
     };
     return dfx;
   };
@@ -33,11 +35,13 @@ public:
 
 int main() {
   vector<double> initial_guesses = { deg_to_rad<double>(30.0),
-                                     deg_to_rad<double>(0.0),
-                                     deg_to_rad<double>(220.0) };
+                                     deg_to_rad<double>(0.0) };
   vector<double> e(2, 0.000001);
   Systems_Link<double> slink(initial_guesses, e);
-  slink.iterate();
+  vector<double> r = slink.iterate();
+  for(auto &x : r)
+    cout << rad_to_deg<double>(x) << " ";
+  cout << endl;
   return 0;
 }
 

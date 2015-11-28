@@ -1,5 +1,5 @@
 #include <iostream>
-// #include "direct_fit.h"
+#include "direct_fit.h"
 #include "lagrange.h"
 #include "neville.h"
 #include "divided_difference.h"
@@ -24,9 +24,9 @@ int main() {
     fx.push_back(1.0/_x);
   }
 
-  // Interpolation::DirectFit<double> xinv_directfit(x, fx);
-  // function<double (double)> fit_f = xinv_directfit.fit(3.44, deg);
-  // cout << "Direct Fit: " << fit_f(3.44) << endl;
+  Interpolation::DirectFit<double> xinv_directfit(x, fx);
+  function<double (double)> fit_f = xinv_directfit.fit(3.44, deg);
+  cout << "Direct Fit: " << fit_f(3.44) << endl;
 
   Interpolation::Lagrange<double> xinv_lagrange(x, fx);
   function<double (double)> fit_f1 = xinv_lagrange.fit(3.44, deg);

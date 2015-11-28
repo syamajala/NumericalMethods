@@ -1,6 +1,6 @@
 CXX ?= g++
 CXXFLAGS ?= -g -Wall -Wcpp -Wno-deprecated -std=c++11 -I../include/
-LDFLAGS ?= -llapack
+LDFLAGS ?= -larmadillo
 
 all: link link_systems
 

@@ -2,8 +2,10 @@
 #define INTERPOLATION_DIRECT_FIT_H
 
 #include <cmath>
-#include <lapacke.h>
+#include <armadillo>
 #include "fit.h"
+
+using namespace arma;
 
 namespace Interpolation {
   template <class T>
@@ -21,29 +23,24 @@ namespace Interpolation {
      * throughout a neighborhood of the point we fit around.
      */
     vector<T> coeffs(const T point, const int deg) {
-      vector<T> M;
-      vector<T> sorted_f;
+      vector<T> vM;
+      vector<T> vsorted_f;
 
       vector<int> nnIdx = this->neighbors(point, deg);
 
       for(int i = 0; i < deg+1; i++) {
-        sorted_f.push_back(this->f[nnIdx[i]]);
+        vsorted_f.push_back(this->f[nnIdx[i]]);
         for(int j = 0; j < deg+1; j++) {
-          float p = this->x[nnIdx[j]];
-          M.push_back(pow(p, i));
+          T p = this->x[nnIdx[j]];
+          vM.push_back(pow(p, i));
         }
       }
 
-      char TRANS = 'N';
-      int NRHS = 1;
-      int IPIV[deg+1];
-
-      LAPACKE_sgetrf(LAPACK_COL_MAJOR, deg+1, deg+1, &(M[0]), deg+1, &IPIV[0]);
-
-      LAPACKE_sgetrs(LAPACK_COL_MAJOR, TRANS, deg+1, NRHS, &(M[0]), deg+1,
-                     &(IPIV[0]), &(sorted_f[0]), deg+1);
-
-      return sorted_f;
+      Mat<T> M = conv_to<Mat<T>>::from(vM);
+      M = reshape(M, deg+1, deg+1);
+      Col<T> sorted_f = conv_to<Col<T>>::from(vsorted_f);
+      sorted_f = solve(M, sorted_f);
+      return conv_to<vector<T>>::from(sorted_f);
     }
 
     function<T (T)> fit(const T point, const int deg) {

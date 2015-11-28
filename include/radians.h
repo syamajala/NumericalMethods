@@ -1,3 +1,6 @@
+#ifndef RADIANS_H
+#define RADIANS_H
+
 #include <cmath>
 
 using namespace std;
@@ -12,4 +15,4 @@ const T deg_to_rad(T x) {
   return x*(M_PI/180.0);
 }
 
-
+#endif
