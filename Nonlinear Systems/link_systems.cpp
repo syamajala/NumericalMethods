@@ -39,6 +39,8 @@ int main() {
   vector<double> e(2, 0.000001);
   Systems_Link<double> slink(initial_guesses, e);
   vector<double> r = slink.iterate();
+
+  cout.precision(15);
   for(auto &x : r)
     cout << rad_to_deg<double>(x) << " ";
   cout << endl;

@@ -23,7 +23,7 @@ int main() {
     x.push_back(_x);
     fx.push_back(1.0/_x);
   }
-
+  cout.precision(15);
   Interpolation::DirectFit<double> xinv_directfit(x, fx);
   function<double (double)> fit_f = xinv_directfit.fit(3.44, deg);
   cout << "Direct Fit: " << fit_f(3.44) << endl;
