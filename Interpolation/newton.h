@@ -10,8 +10,12 @@ namespace Interpolation {
   protected:
     T step_size;
     vector<vector<T>> table;
+    int deg;
 
     void build_table(const int deg) {
+      if (!table.empty())
+        return;
+
       table.push_back(this->x);
       table.push_back(this->f);
 
@@ -31,9 +35,6 @@ namespace Interpolation {
 
   template <class T>
     class ForwardDifference : public Newton<T> {
-  protected:
-
-
   public:
   ForwardDifference(const vector<T> &x, const vector<T> &f, T step_size) :
     Newton<T>(x, f, step_size) {};

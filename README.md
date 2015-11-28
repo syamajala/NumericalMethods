@@ -25,6 +25,7 @@ Currently includes:
 
 ### Integration
   * Direct fit
+  * Trapezoid rule
 
 ### ODEs
   * Implicit Euler method

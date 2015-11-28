@@ -5,7 +5,7 @@ LDFLAGS ?= -larmadillo -lANN
 xinv: xinv.o
 	$(CXX) $(LDFLAGS) -o xinv xinv.o
 
-xinv.o: xinv.cpp ../Interpolation/direct_fit.h direct_fit.h
+xinv.o: xinv.cpp ../Interpolation/direct_fit.h direct_fit.h ../Interpolation/newton.h newton.h
 	$(CXX) $(CXXFLAGS) -c xinv.cpp
 
 clean:
