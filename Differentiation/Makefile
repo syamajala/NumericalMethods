@@ -1,11 +1,11 @@
 CXX ?= g++
 CXXFLAGS ?= -g -Wall -Wcpp -Wno-deprecated -I../include -I../Interpolation --std=c++11
-LDFLAGS ?= -llapack -lANN
+LDFLAGS ?= -larmadillo -lANN
 
 xinv: xinv.o
 	$(CXX) $(LDFLAGS) -o xinv xinv.o
 
-xinv.o: xinv.cpp ../Interpolation/direct_fit.h direct_fit.h
+xinv.o: xinv.cpp ../Interpolation/direct_fit.hpp direct_fit.hpp
 	$(CXX) $(CXXFLAGS) -c xinv.cpp
 
 clean:

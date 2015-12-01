@@ -2,7 +2,7 @@
 #define ODES_MODIFIED_MIDPOINT_H
 
 #include <vector>
-#include "IVP.h"
+#include "IVP.hpp"
 
 namespace ODEs {
   template <class T>

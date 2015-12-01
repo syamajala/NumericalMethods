@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "direct_fit.h"
+#include "direct_fit.hpp"
 
 using std::vector;
 using std::cout;

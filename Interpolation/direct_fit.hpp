@@ -3,7 +3,7 @@
 
 #include <cmath>
 #include <armadillo>
-#include "fit.h"
+#include "fit.hpp"
 
 using namespace arma;
 

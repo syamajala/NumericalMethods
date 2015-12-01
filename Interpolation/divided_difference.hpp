@@ -1,7 +1,7 @@
 #ifndef INTERPOLATION_DIFFERENCE_H
 #define INTERPOLATION_DIFFERENCE_H
 
-#include "fit.h"
+#include "fit.hpp"
 
 namespace Interpolation {
 

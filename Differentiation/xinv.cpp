@@ -1,6 +1,6 @@
 #include <iostream>
-#include "direct_fit.h"
-#include "../Interpolation/direct_fit.h"
+#include "direct_fit.hpp"
+#include "../Interpolation/direct_fit.hpp"
 
 using std::cout;
 using std::endl;

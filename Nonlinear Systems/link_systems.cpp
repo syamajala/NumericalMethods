@@ -1,7 +1,7 @@
 #include <vector>
 #include <cmath>
-#include "newton_systems.h"
-#include "radians.h"
+#include "newton_systems.hpp"
+#include "radians.hpp"
 
 static constexpr double r1 = 10.0;
 static constexpr double r2 = 6.0;

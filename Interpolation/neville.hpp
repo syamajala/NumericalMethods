@@ -2,7 +2,7 @@
 #define INTERPOLATION_NEVILLE_H
 
 #include <map>
-#include "fit.h"
+#include "fit.hpp"
 
 namespace Interpolation {
   template <class T>

@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cmath>
-#include "radians.h"
-#include "iterative.h"
-#include "newton.h"
+#include "radians.hpp"
+#include "iterative.hpp"
+#include "newton.hpp"
 
 using std::cout;
 

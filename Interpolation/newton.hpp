@@ -1,8 +1,12 @@
 #ifndef INTERPOLATION_NEWTON_H
 #define INTERPOLATION_NEWTON_H
 
-#include "binomial_coefficients.h"
-#include "fit.h"
+#include <iostream>
+#include "binomial_coefficients.hpp"
+#include "fit.hpp"
+
+using std::cout;
+using std::endl;
 
 namespace Interpolation {
   template <class T>

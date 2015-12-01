@@ -1,7 +1,7 @@
 #ifndef INTERPOLATION_LAGRANGE
 #define INTERPOLATION_LAGRANGE
 
-#include "fit.h"
+#include "fit.hpp"
 
 namespace Interpolation {
   template <class T>

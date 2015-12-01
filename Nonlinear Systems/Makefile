@@ -7,13 +7,13 @@ all: link link_systems
 link_systems: link_systems.o
 	$(CXX) $(LDFLAGS) -o link_systems link_systems.o
 
-link_systems.o: link_systems.cpp newton_systems.h
+link_systems.o: link_systems.cpp newton_systems.hpp
 	$(CXX) $(CXXFLAGS) -c link_systems.cpp
 
 link: link.o
 	$(CXX) $(LDFLAGS) -o link link.o
 
-link.o: link.cpp iterative.h newton.h
+link.o: link.cpp iterative.hpp newton.hpp
 	$(CXX) $(CXXFLAGS) -c link.cpp
 
 clean:
