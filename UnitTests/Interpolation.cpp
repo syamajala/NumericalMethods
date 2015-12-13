@@ -1,9 +1,9 @@
 #include <iostream>
-#include "direct_fit.hpp"
-#include "lagrange.hpp"
-#include "neville.hpp"
-#include "divided_difference.hpp"
-#include "newton.hpp"
+#include "Interpolation/direct_fit.hpp"
+#include "Interpolation/lagrange.hpp"
+#include "Interpolation/neville.hpp"
+#include "Interpolation/divided_difference.hpp"
+#include "Interpolation/newton.hpp"
 
 using std::cout;
 using std::endl;

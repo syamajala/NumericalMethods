@@ -2,7 +2,7 @@
 #define INTERPOLATION_NEWTON_H
 
 #include <iostream>
-#include "binomial_coefficients.hpp"
+#include "include/binomial_coefficients.hpp"
 #include "fit.hpp"
 
 using std::cout;

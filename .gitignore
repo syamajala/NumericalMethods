@@ -1,13 +1,12 @@
 *.o
 *~
-radiation
-link
-link_systems
-xinv
-enthalpy
+bin
 GPATH
 GRTAGS
 GTAGS
 CMakeCache.txt
 CMakeFiles
+CMakeScripts
+Makefile
 cmake_install.cmake
+install_manifest.txt

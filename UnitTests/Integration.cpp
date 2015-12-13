@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
-#include "../Interpolation/direct_fit.hpp"
-#include "direct_fit.hpp"
-#include "../Interpolation/newton.hpp"
-#include "newton.hpp"
+#include "Interpolation/direct_fit.hpp"
+#include "Integration/direct_fit.hpp"
+#include "Interpolation/newton.hpp"
+#include "Integration/newton.hpp"
 
 using std::vector;
 using std::cout;

@@ -1,10 +1,10 @@
 #include <iostream>
 #include <math.h>
-#include "explicit_euler.hpp"
-#include "modified_midpoint.hpp"
-#include "modified_euler.hpp"
-#include "runge_kutta.hpp"
-#include "extrapolated_midpoint.hpp"
+#include "ODEs/explicit_euler.hpp"
+#include "ODEs/modified_midpoint.hpp"
+#include "ODEs/modified_euler.hpp"
+#include "ODEs/runge_kutta.hpp"
+#include "ODEs/extrapolated_midpoint.hpp"
 
 static constexpr double alpha = 4.0*10.0e-13;
 static constexpr double T_a4 = pow(250.0, 4);

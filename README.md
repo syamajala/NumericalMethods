@@ -1,7 +1,7 @@
 C++11 implementation of numerical algorithms described in [Numerical Methods for
 Engineers and Scientists](http://www.amazon.com/Numerical-Methods-Engineers-Scientists-Edition/dp/0824704436) by Hoffman.
 
-Requires armadillo and ANN.
+Requires CMake, Armadillo and ANN.
 
 Currently includes:
 
