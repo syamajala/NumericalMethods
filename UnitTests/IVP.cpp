@@ -13,7 +13,7 @@ template <class E>
 class ExplicitRadiation : public ODEs::ExplicitEuler<E> {
 public:
   ExplicitRadiation(E initial_condition, E step_size, int steps) :
-    ODEs::ExplicitEuler<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
+    ODEs::ExplicitEuler<E>(initial_condition, derivative(0, initial_condition),
                      step_size, steps) {};
 
   E derivative(E t_n, E T_n) {
@@ -25,7 +25,7 @@ template <class E>
 class ModifiedMidpointRadiation : public ODEs::ModifiedMidpoint<E> {
 public:
   ModifiedMidpointRadiation(E initial_condition, E step_size, int steps) :
-    ODEs::ModifiedMidpoint<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
+    ODEs::ModifiedMidpoint<E>(initial_condition, derivative(0, initial_condition),
                         step_size, steps) {};
 
   E derivative(E t_n, E T_n) {
@@ -37,8 +37,8 @@ template <class E>
 class ModifiedEulerRadiation : public ODEs::ModifiedEuler<E> {
 public:
   ModifiedEulerRadiation(E initial_condition, E step_size, int steps) :
-    ODEs::ModifiedEuler<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
-                     step_size, steps) {};
+    ODEs::ModifiedEuler<E>(initial_condition, derivative(0, initial_condition),
+                           step_size, steps) {};
 
   E derivative(E t_n, E T_n) {
     return -alpha*(pow(T_n, 4) - T_a4);
@@ -49,7 +49,7 @@ template <class E>
 class RungeKuttaRadiation : public ODEs::RungeKutta<E> {
 public:
   RungeKuttaRadiation(E initial_condition, E step_size, int steps) :
-    ODEs::RungeKutta<E>(initial_condition, -1*alpha*(pow(initial_condition, 4) - T_a4),
+    ODEs::RungeKutta<E>(initial_condition, derivative(0, initial_condition),
                      step_size, steps) {};
 
   E derivative(E t_n, E T_n) {

@@ -28,5 +28,7 @@ macro (add_executable _name)
   endif()
 endmacro()
 
+set(CMAKE_BUILD_TYPE Debug)
+
 add_subdirectory(UnitTests)
 add_subdirectory(Problems)
