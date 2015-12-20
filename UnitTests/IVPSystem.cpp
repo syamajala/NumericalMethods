@@ -21,4 +21,5 @@ int main() {
   valarray<double> initial_condition = {0.0, 0.0};
   RungeKuttaRocket<double> rk_r(initial_condition, del_t, steps);
   rk_r.iterate();
+  cout << rk_r << endl;
 }

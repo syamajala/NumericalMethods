@@ -73,6 +73,19 @@ namespace ODEs {
     }
 
     virtual valarray<T> derivative(T t_n, valarray<T> y_n) = 0;
+
+    friend ostream& operator<< (ostream &os, const IVPSystem<T> &obj)  {
+      for(int cur_step = 0; cur_step <= obj.steps; cur_step++) {
+        for(size_t i = 0; i < obj.y_n[cur_step].size(); i++) {
+            os << boost::format("n = %=i\ty_%i = %f\tf_%i = %f\n")
+              % (cur_step*obj.step_size) % cur_step % obj.y_n[cur_step][i]
+              % cur_step % obj.f_n[cur_step][i];
+          }
+        os << "\n";
+      }
+      return os;
+    };
+
   };
 }
 #endif
