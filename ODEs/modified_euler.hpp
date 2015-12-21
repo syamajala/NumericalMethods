@@ -1,12 +1,11 @@
 #ifndef ODES_MODIFIED_EULER_H
 #define ODES_MODIFIED_EULER_H
 
-#include <vector>
 #include "IVP.hpp"
 
 namespace ODEs {
   template <class T>
-    class ModifiedEuler : public IVP<T> {
+  class ModifiedEuler : public IVP<T> {
   protected:
     T yp_nplusone(int n) {
       return this->y_n[n] + this->step_size*this->f_n[n];

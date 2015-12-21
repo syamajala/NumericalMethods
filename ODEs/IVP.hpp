@@ -21,11 +21,14 @@ namespace ODEs {
     int steps;
     virtual T y_nplusone(int n) = 0;
   public:
-  IVP(T y, T f, T step_size, int steps) :
-    step_size(step_size), steps(steps) {
+    IVP(T y, T f, T step_size, int steps) :
+      step_size(step_size), steps(steps) {
       y_n.push_back(y);
       f_n.push_back(f);
     };
+
+    IVP(vector<T> &y_n, vector<T> &f_n, T step_size, int steps) :
+      y_n(y_n), f_n(f_n), step_size(step_size), steps(steps) {};
 
     virtual ~IVP() {};
 
@@ -46,6 +49,9 @@ namespace ODEs {
       }
       return os;
     };
+
+    template<class R>
+    friend class AdamsMoulton;
   };
 
   template <class T>
