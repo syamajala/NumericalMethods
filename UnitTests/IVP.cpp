@@ -1,6 +1,7 @@
 #include <iostream>
 #include <math.h>
 #include "ODEs/IVP.hpp"
+#include "ODEs/implicit_euler.hpp"
 #include "ODEs/explicit_euler.hpp"
 #include "ODEs/modified_midpoint.hpp"
 #include "ODEs/modified_euler.hpp"
@@ -11,82 +12,105 @@
 static constexpr double alpha = 4.0*10.0e-13;
 static constexpr double T_a4 = pow(250.0, 4);
 
+template<class E>
+class Radiation {
+ public:
+  E derivative(E t_n, E T_n) {
+    return -alpha*(pow(T_n, 4) - T_a4);
+  };
+};
+
 template <class E>
-class ExplicitRadiation : public ODEs::ExplicitEuler<E> {
+class ImplicitRadiation : public Radiation<E>, public ODEs::ImplicitEuler<E> {
+public:
+  ImplicitRadiation(E initial_condition, E step_size, int steps) :
+    ODEs::ImplicitEuler<E>(initial_condition, derivative(0, initial_condition),
+                           step_size, steps) {};
+  E derivative(E t_n, E T_n) {
+    return Radiation<E>::derivative(t_n, T_n);
+  };
+
+  E dderivative(E t_n, E T_n) {
+    return -4*alpha*pow(T_n, 3);
+  };
+
+};
+
+template <class E>
+class ExplicitRadiation : public Radiation<E>, public ODEs::ExplicitEuler<E> {
 public:
   ExplicitRadiation(E initial_condition, E step_size, int steps) :
     ODEs::ExplicitEuler<E>(initial_condition, derivative(0, initial_condition),
-                     step_size, steps) {};
-
-  E derivative(E t_n, E T_n) {
-    return -alpha*(pow(T_n, 4) - T_a4);
-  };
+                           step_size, steps) {};
+    E derivative(E t_n, E T_n) {
+      return Radiation<E>::derivative(t_n, T_n);
+    };
 };
 
 template <class E>
-class ModifiedMidpointRadiation : public ODEs::ModifiedMidpoint<E> {
+class ModifiedMidpointRadiation : public Radiation<E>, public ODEs::ModifiedMidpoint<E> {
 public:
   ModifiedMidpointRadiation(E initial_condition, E step_size, int steps) :
     ODEs::ModifiedMidpoint<E>(initial_condition, derivative(0, initial_condition),
-                        step_size, steps) {};
-
+                              step_size, steps) {};
   E derivative(E t_n, E T_n) {
-    return -alpha*(pow(T_n, 4) - T_a4);
+    return Radiation<E>::derivative(t_n, T_n);
   };
 };
 
 template <class E>
-class ModifiedEulerRadiation : public ODEs::ModifiedEuler<E> {
+class ModifiedEulerRadiation : public Radiation<E>, public ODEs::ModifiedEuler<E> {
 public:
   ModifiedEulerRadiation(E initial_condition, E step_size, int steps) :
     ODEs::ModifiedEuler<E>(initial_condition, derivative(0, initial_condition),
                            step_size, steps) {};
-
   E derivative(E t_n, E T_n) {
-    return -alpha*(pow(T_n, 4) - T_a4);
+    return Radiation<E>::derivative(t_n, T_n);
   };
 };
 
 template <class E>
-class RungeKuttaRadiation : public ODEs::RungeKutta<E> {
+class RungeKuttaRadiation : public Radiation<E>, public ODEs::RungeKutta<E> {
 public:
   RungeKuttaRadiation(E initial_condition, E step_size, int steps) :
     ODEs::RungeKutta<E>(initial_condition, derivative(0, initial_condition),
                      step_size, steps) {};
-
   E derivative(E t_n, E T_n) {
-    return -alpha*(pow(T_n, 4) - T_a4);
+    return Radiation<E>::derivative(t_n, T_n);
   };
 };
 
 template <class E>
-class ExtrapolatedMidpointRadiation : public ODEs::ExtrapolatedMidpoint<E> {
+class ExtrapolatedMidpointRadiation : public Radiation<E>, public ODEs::ExtrapolatedMidpoint<E> {
 public:
   ExtrapolatedMidpointRadiation(E initial_condition, E step_size, int steps, int M) :
     ODEs::ExtrapolatedMidpoint<E>(initial_condition, derivative(0, initial_condition),
                             step_size, steps, M) {};
-
   E derivative(E t_n, E T_n) {
-    return -alpha*(pow(T_n, 4) - T_a4);
+    return Radiation<E>::derivative(t_n, T_n);
   };
 };
 
 template <class E>
-class AdamsMoultonRadiation : public ODEs::AdamsMoulton<E> {
+class AdamsMoultonRadiation : public Radiation<E>, public ODEs::AdamsMoulton<E> {
 public:
   AdamsMoultonRadiation(ODEs::IVP<E> &ic, E step_size, int steps) :
     ODEs::AdamsMoulton<E>(ic, step_size, steps) {};
-
   E derivative(E t_n, E T_n) {
-    return -alpha*(pow(T_n, 4) - T_a4);
+    return Radiation<E>::derivative(t_n, T_n);
   };
 };
 
 
 int main() {
   double initial_condition = 2500.0;
-  double del_t = 1.0;
-  int steps = 10;
+  double del_t = 2.0;
+  int steps = 5;
+
+  cout << "Implicit Euler: \n";
+  ImplicitRadiation<double> implicit_r(initial_condition, del_t, steps);
+  implicit_r.iterate();
+  cout << implicit_r << endl;
 
   cout << "Explicit Euler: \n";
   ExplicitRadiation<double> explicit_r(initial_condition, del_t, steps);

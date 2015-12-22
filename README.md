@@ -29,6 +29,7 @@ Currently includes:
 
 ### ODEs
   * Implicit Euler method
+  * Explicit Euler method
   * Modified midpoint method
   * Modified Euler method
   * Fourth order Runge Kutta

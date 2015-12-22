@@ -3,6 +3,8 @@ project (NumericalMethods)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
+find_package(Threads)
+
 find_package(Armadillo REQUIRED)
 include_directories(${ARMADILLO_INCLUDE_DIRS})
 
@@ -23,7 +25,7 @@ include_directories("${PROJECT_SOURCE_DIR}")
 macro (add_executable _name)
   _add_executable(${ARGV})
   if(TARGET ${_name})
-    target_link_libraries(${_name} ${ARMADILLO_LIBRARIES} ${ANN_LIBRARIES})
+    target_link_libraries(${_name} ${ARMADILLO_LIBRARIES} ${ANN_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
     set_target_properties(${_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY bin)
   endif()
 endmacro()

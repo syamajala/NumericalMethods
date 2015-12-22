@@ -13,7 +13,7 @@
 
 namespace ODEs {
   template <class T>
-    class ExplicitEuler : public IVP<T> {
+  class ExplicitEuler : public IVP<T> {
   protected:
     T y_nplusone(int n) {
       return this->y_n[n] + this->step_size*this->f_n[n];
