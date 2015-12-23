@@ -35,4 +35,5 @@ Currently includes:
   * Fourth order Runge Kutta
   * Extrapolated modified midpoint method
   * Adams-Bashforth-Moulton method
+  * Explicit Euler for systems
   * Runge Kutta for systems
