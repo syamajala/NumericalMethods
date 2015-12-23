@@ -9,15 +9,17 @@ namespace ODEs {
   protected:
 
     T yp_nplusone(int n) {
-      return this->y_n[n] + (1.0/24.0)*this->step_size*(55*this->f_n[n] - 59*this->f_n[n-1] + 37*this->f_n[n-2] - 9*this->f_n[n-3]);
+      return this->y_n[n] + (1.0/24.0)*this->step_size*(55.0*this->f_n[n] - 59.0*this->f_n[n-1] +
+                                                        37.0*this->f_n[n-2] - 9.0*this->f_n[n-3]);
     };
 
     T fp_nplusone(int n) {
-      return this->derivative(n*this->step_size, yp_nplusone(n));
+      return this->derivative(S(n)*this->step_size, yp_nplusone(n));
     };
 
     T yc_nplusone(int n) {
-      return this->y_n[n] + (1.0/24.0)*this->step_size*(9*fp_nplusone(n) + 19*this->f_n[n] - 5*this->f_n[n-1] + this->f_n[n-2]);
+      return this->y_n[n] + (1.0/24.0)*this->step_size*(9.0*fp_nplusone(n) + 19.0*this->f_n[n] -
+                                                        5.0*this->f_n[n-1] + this->f_n[n-2]);
     };
 
     T y_nplusone(int n) {
@@ -30,7 +32,7 @@ namespace ODEs {
     virtual void iterate() {
       for(int n = 4; n <= this->steps; n++) {
         this->y_n.push_back(y_nplusone(n-1));
-        this->f_n.push_back(this->derivative(n*this->step_size, this->y_n[n]));
+        this->f_n.push_back(this->derivative(S(n)*this->step_size, this->y_n[n]));
       };
     }
   };

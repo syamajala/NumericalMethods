@@ -29,11 +29,9 @@ Currently includes:
 
 ### ODEs
   * Implicit Euler method
-  * Explicit Euler method
-  * Modified midpoint method
-  * Modified Euler method
-  * Fourth order Runge Kutta
-  * Extrapolated modified midpoint method
-  * Adams-Bashforth-Moulton method
-  * Explicit Euler for systems
-  * Runge Kutta for systems
+  * Explicit Euler method (for systems)
+  * Modified midpoint method (for systems)
+  * Modified Euler method (for systems)
+  * Fourth order Runge Kutta (for systems)
+  * Extrapolated modified midpoint method (for systems)
+  * Adams-Bashforth-Moulton method (for systems)

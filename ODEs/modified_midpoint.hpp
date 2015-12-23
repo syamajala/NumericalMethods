@@ -1,7 +1,6 @@
 #ifndef ODES_MODIFIED_MIDPOINT_H
 #define ODES_MODIFIED_MIDPOINT_H
 
-#include <vector>
 #include "IVP.hpp"
 
 namespace ODEs {

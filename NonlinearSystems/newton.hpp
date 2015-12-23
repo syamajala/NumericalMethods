@@ -3,7 +3,7 @@
 
 namespace NonlinearSystems {
   template <class T>
-    class Newton {
+  class Newton {
   protected:
     T initial_guess;
     T e;

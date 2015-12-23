@@ -12,7 +12,7 @@
 static constexpr double alpha = 4.0*10.0e-13;
 static constexpr double T_a4 = pow(250.0, 4);
 
-template<class E>
+template <class E>
 class Radiation {
  public:
   E derivative(E t_n, E T_n) {
