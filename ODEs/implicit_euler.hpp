@@ -6,8 +6,8 @@
 #include "IVP.hpp"
 
 namespace ODEs {
-  template <class T>
-  class ImplicitEuler : public NonlinearSystems::Newton<T>, public IVP<T> {
+  template <class T, class S>
+  class ImplicitEuler : public NonlinearSystems::Newton<T>, public IVP<T, S> {
   protected:
     int cur_step = 1;
 
@@ -26,8 +26,8 @@ namespace ODEs {
     };
 
   public:
-    ImplicitEuler(T y, T f, T step_size, int steps) :
-      NonlinearSystems::Newton<T>(y, 0.0001), IVP<T>(y, f, step_size, steps)  {};
+    ImplicitEuler(T y, T f, S step_size, int steps) :
+      NonlinearSystems::Newton<T>(y, 0.0001), IVP<T, S>(y, f, step_size, steps)  {};
 
     T f(T x) {
       return this->f(this->cur_step-1, x);

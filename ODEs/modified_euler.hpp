@@ -4,8 +4,8 @@
 #include "IVP.hpp"
 
 namespace ODEs {
-  template <class T>
-  class ModifiedEuler : public IVP<T> {
+  template <class T, class S>
+  class ModifiedEuler : public IVP<T, S> {
   protected:
     T yp_nplusone(int n) {
       return this->y_n[n] + this->step_size*this->f_n[n];
@@ -24,8 +24,8 @@ namespace ODEs {
     };
 
   public:
-  ModifiedEuler(T y, T f, T step_size, int steps) :
-    IVP<T>(y, f, step_size, steps) {};
+  ModifiedEuler(T y, T f, S step_size, int steps) :
+    IVP<T, S>(y, f, step_size, steps) {};
   };
 }
 #endif

@@ -21,10 +21,10 @@ class Radiation {
 };
 
 template <class E>
-class ImplicitRadiation : public Radiation<E>, public ODEs::ImplicitEuler<E> {
+class ImplicitRadiation : public Radiation<E>, public ODEs::ImplicitEuler<E, E> {
 public:
   ImplicitRadiation(E initial_condition, E step_size, int steps) :
-    ODEs::ImplicitEuler<E>(initial_condition, derivative(0, initial_condition),
+    ODEs::ImplicitEuler<E, E>(initial_condition, derivative(0, initial_condition),
                            step_size, steps) {};
   E derivative(E t_n, E T_n) {
     return Radiation<E>::derivative(t_n, T_n);
@@ -33,14 +33,13 @@ public:
   E dderivative(E t_n, E T_n) {
     return -4*alpha*pow(T_n, 3);
   };
-
 };
 
 template <class E>
-class ExplicitRadiation : public Radiation<E>, public ODEs::ExplicitEuler<E> {
+class ExplicitRadiation : public Radiation<E>, public ODEs::ExplicitEuler<E, E> {
 public:
   ExplicitRadiation(E initial_condition, E step_size, int steps) :
-    ODEs::ExplicitEuler<E>(initial_condition, derivative(0, initial_condition),
+    ODEs::ExplicitEuler<E, E>(initial_condition, derivative(0, initial_condition),
                            step_size, steps) {};
     E derivative(E t_n, E T_n) {
       return Radiation<E>::derivative(t_n, T_n);
@@ -48,10 +47,10 @@ public:
 };
 
 template <class E>
-class ModifiedMidpointRadiation : public Radiation<E>, public ODEs::ModifiedMidpoint<E> {
+class ModifiedMidpointRadiation : public Radiation<E>, public ODEs::ModifiedMidpoint<E, E> {
 public:
   ModifiedMidpointRadiation(E initial_condition, E step_size, int steps) :
-    ODEs::ModifiedMidpoint<E>(initial_condition, derivative(0, initial_condition),
+    ODEs::ModifiedMidpoint<E, E>(initial_condition, derivative(0, initial_condition),
                               step_size, steps) {};
   E derivative(E t_n, E T_n) {
     return Radiation<E>::derivative(t_n, T_n);
@@ -59,10 +58,10 @@ public:
 };
 
 template <class E>
-class ModifiedEulerRadiation : public Radiation<E>, public ODEs::ModifiedEuler<E> {
+class ModifiedEulerRadiation : public Radiation<E>, public ODEs::ModifiedEuler<E, E> {
 public:
   ModifiedEulerRadiation(E initial_condition, E step_size, int steps) :
-    ODEs::ModifiedEuler<E>(initial_condition, derivative(0, initial_condition),
+    ODEs::ModifiedEuler<E, E>(initial_condition, derivative(0, initial_condition),
                            step_size, steps) {};
   E derivative(E t_n, E T_n) {
     return Radiation<E>::derivative(t_n, T_n);
@@ -70,10 +69,10 @@ public:
 };
 
 template <class E>
-class RungeKuttaRadiation : public Radiation<E>, public ODEs::RungeKutta<E> {
+class RungeKuttaRadiation : public Radiation<E>, public ODEs::RungeKutta<E, E> {
 public:
   RungeKuttaRadiation(E initial_condition, E step_size, int steps) :
-    ODEs::RungeKutta<E>(initial_condition, derivative(0, initial_condition),
+    ODEs::RungeKutta<E, E>(initial_condition, derivative(0, initial_condition),
                      step_size, steps) {};
   E derivative(E t_n, E T_n) {
     return Radiation<E>::derivative(t_n, T_n);
@@ -81,10 +80,10 @@ public:
 };
 
 template <class E>
-class ExtrapolatedMidpointRadiation : public Radiation<E>, public ODEs::ExtrapolatedMidpoint<E> {
+class ExtrapolatedMidpointRadiation : public Radiation<E>, public ODEs::ExtrapolatedMidpoint<E, E> {
 public:
   ExtrapolatedMidpointRadiation(E initial_condition, E step_size, int steps, int M) :
-    ODEs::ExtrapolatedMidpoint<E>(initial_condition, derivative(0, initial_condition),
+    ODEs::ExtrapolatedMidpoint<E, E>(initial_condition, derivative(0, initial_condition),
                             step_size, steps, M) {};
   E derivative(E t_n, E T_n) {
     return Radiation<E>::derivative(t_n, T_n);
@@ -92,15 +91,14 @@ public:
 };
 
 template <class E>
-class AdamsMoultonRadiation : public Radiation<E>, public ODEs::AdamsMoulton<E> {
+class AdamsMoultonRadiation : public Radiation<E>, public ODEs::AdamsMoulton<E, E> {
 public:
-  AdamsMoultonRadiation(ODEs::IVP<E> &ic, E step_size, int steps) :
-    ODEs::AdamsMoulton<E>(ic, step_size, steps) {};
+  AdamsMoultonRadiation(ODEs::IVP<E, E> &ic, E step_size, int steps) :
+    ODEs::AdamsMoulton<E, E>(ic, step_size, steps) {};
   E derivative(E t_n, E T_n) {
     return Radiation<E>::derivative(t_n, T_n);
   };
 };
-
 
 int main() {
   double initial_condition = 2500.0;
@@ -141,7 +139,7 @@ int main() {
   RungeKuttaRadiation<double> rk_ic(initial_condition, del_t, 3);
   rk_ic.iterate();
 
-  ODEs::IVP<double> &ic = rk_ic;
+  ODEs::IVP<double, double> &ic = rk_ic;
   AdamsMoultonRadiation<double> am_r(ic, del_t, steps);
   am_r.iterate();
   cout << am_r;

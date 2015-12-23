@@ -2,11 +2,10 @@
 #define ODES_ADAMS_MOULTON_H
 
 #include "IVP.hpp"
-#include "runge_kutta.hpp"
 
 namespace ODEs {
-  template <class T>
-  class AdamsMoulton : public IVP<T> {
+  template <class T, class S>
+  class AdamsMoulton : public IVP<T, S> {
   protected:
 
     T yp_nplusone(int n) {
@@ -25,8 +24,8 @@ namespace ODEs {
       return yc_nplusone(n);
     };
   public:
-    AdamsMoulton(IVP<T> &ic, T step_size, int steps) :
-      IVP<T>(ic.y_n, ic.f_n, step_size, steps) {};
+    AdamsMoulton(IVP<T, S> &ic, S step_size, int steps) :
+      IVP<T, S>(ic.y_n, ic.f_n, step_size, steps) {};
 
     virtual void iterate() {
       for(int n = 4; n <= this->steps; n++) {

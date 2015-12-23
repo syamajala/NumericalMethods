@@ -5,8 +5,8 @@
 #include "IVP.hpp"
 
 namespace ODEs {
-  template <class T>
-    class ExtrapolatedMidpoint : public IVP<T> {
+  template <class T, class S>
+  class ExtrapolatedMidpoint : public IVP<T, S> {
   protected:
     T M;
     T h;
@@ -25,8 +25,8 @@ namespace ODEs {
     };
 
   public:
-  ExtrapolatedMidpoint(T y, T f, T step_size, int steps, int M) :
-    IVP<T>(y, f, step_size, steps), M(M), h(step_size/M) {};
+  ExtrapolatedMidpoint(T y, T f, S step_size, int steps, int M) :
+    IVP<T, S>(y, f, step_size, steps), M(M), h(step_size/M) {};
 
     T y_nplusone(int n) {
       T z_M = z_i(M, n);

@@ -4,10 +4,10 @@
 #include "ODEs/runge_kutta.hpp"
 
 template <class E>
-class ExplicitEulerRocket : public ODEs::ExplicitEulerSystem<E> {
+class ExplicitEulerRocket : public ODEs::ExplicitEuler<valarray<E>, E> {
  public:
   ExplicitEulerRocket(valarray<E> initial_condition, E step_size, int steps) :
-    ODEs::ExplicitEulerSystem<E>(initial_condition, derivative(0, initial_condition), step_size, steps) {};
+    ODEs::ExplicitEuler<valarray<E>, E>(initial_condition, derivative(0, initial_condition), step_size, steps) {};
 
   valarray<E> derivative(E t_n, valarray<E> x) {
     valarray<E> df = { x[1], (10000.0/(100.0 - 5.0*t_n)) - 9.8 };
@@ -16,10 +16,10 @@ class ExplicitEulerRocket : public ODEs::ExplicitEulerSystem<E> {
 };
 
 template <class E>
-class RungeKuttaRocket : public ODEs::RungeKuttaSystem<E> {
+class RungeKuttaRocket : public ODEs::RungeKutta<valarray<E>, E> {
  public:
   RungeKuttaRocket(valarray<E> initial_condition, E step_size, int steps) :
-    ODEs::RungeKuttaSystem<E>(initial_condition, derivative(0, initial_condition), step_size, steps) {};
+    ODEs::RungeKutta<valarray<E>, E>(initial_condition, derivative(0, initial_condition), step_size, steps) {};
 
   valarray<E> derivative(E t_n, valarray<E> x) {
     valarray<E> df = { x[1], (10000.0/(100.0 - 5.0*t_n)) - 9.8 };
