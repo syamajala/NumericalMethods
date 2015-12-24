@@ -22,15 +22,6 @@ endif()
 
 include_directories("${PROJECT_SOURCE_DIR}")
 
-macro (add_executable _name)
-  _add_executable(${ARGV})
-  if(TARGET ${_name})
-    target_link_libraries(${_name} ${ARMADILLO_LIBRARIES} ${ANN_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
-    set_target_properties(${_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY bin)
-  endif()
-endmacro()
-
 set(CMAKE_BUILD_TYPE Debug)
 
 add_subdirectory(UnitTests)
-add_subdirectory(Problems)
