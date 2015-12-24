@@ -1,6 +1,6 @@
 *.o
 *~
-bin
+build
 GPATH
 GRTAGS
 GTAGS
