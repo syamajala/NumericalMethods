@@ -8,9 +8,8 @@ Currently includes:
 ### Nonlinear systems
   * Bisection root finding method
   * False position root finding method
-  * Newton's method
+  * Newton's method (for systems)
   * Secant method
-  * Newton's method for systems
 
 ### Interpolation
   * Direct fit polynomial interpolation

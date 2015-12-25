@@ -4,7 +4,6 @@
 #include "include/radians.hpp"
 #include "NonlinearSystems/iterative.hpp"
 #include "NonlinearSystems/newton.hpp"
-#include "NonlinearSystems/newton_systems.hpp"
 
 using std::cout;
 using std::vector;
@@ -47,10 +46,10 @@ static constexpr double r4 = 4.0;
 static const double theta_4 = deg_to_rad<double>(220.0);
 
 template <class R>
-class Systems_Link : public NonlinearSystems::NewtonSystems<R> {
+class Systems_Link : public NonlinearSystems::Newton<vector<R>> {
 public:
   Systems_Link(vector<R> initial_guesses, vector<R> e) :
-    NonlinearSystems::NewtonSystems<R>(initial_guesses, e) {};
+    NonlinearSystems::Newton<vector<R>>(initial_guesses, e) {};
 
   vector<R> f(vector<R> &x) {
     vector<R> fx = {
