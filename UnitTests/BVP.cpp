@@ -33,4 +33,5 @@ int main() {
 
   Heat<double> h(start_end, ic, step_size, steps);
   h.iterate();
+  cout << h << endl;
 }

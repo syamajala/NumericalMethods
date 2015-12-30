@@ -8,6 +8,8 @@
 #include "ODEs/extrapolated_midpoint.hpp"
 #include "ODEs/adams_moulton.hpp"
 
+using std::cout;
+
 template <class E>
 class Rocket {
 public:

@@ -38,6 +38,8 @@ namespace ODEs {
       fde(0, 2) = 0;
       r(0) = -1*this->ic[0];
 
+      this->x.push_back((this->steps-2)*this->step_size);
+      this->x.push_back((this->steps-1)*this->step_size);
       this->x.push_back(this->start_end.second);
 
       fde(this->steps-2, this->steps-4) = 0;
@@ -46,6 +48,10 @@ namespace ODEs {
       r(this->steps-2) = -1*this->ic[1];
 
       Col<T> s = solve(fde, r);
+      this->f.push_back(this->ic.front());
+      vector<T> _f = conv_to<vector<T>>::from(s);
+      this->f.insert(this->f.end(), _f.begin(), _f.end());
+      this->f.push_back(this->ic.back());
     };
 
   };

@@ -3,9 +3,11 @@
 
 #include <vector>
 #include <utility>
+#include <boost/format.hpp>
 
 using std::vector;
 using std::pair;
+using std::ostream;
 
 namespace ODEs {
   template <class T>
@@ -24,6 +26,16 @@ namespace ODEs {
     virtual T P(T x) = 0;
     virtual T Q(T x) = 0;
     virtual T F(T x) = 0;
+    virtual void iterate() = 0;
+
+    friend ostream& operator<< (ostream &os, const BVP<T> &obj) {
+      for(size_t i = 0; i < obj.x.size(); i++) {
+        os << boost::format("n = %=i\tx_%i = %f\tf_%i = %f\n")
+          % i % i % obj.x[i]
+          % i % obj.f[i];
+      }
+      return os;
+    };
   };
 }
 

@@ -7,8 +7,6 @@
 
 using std::vector;
 using std::valarray;
-using std::cout;
-using std::endl;
 using std::ostream;
 
 namespace ODEs {
