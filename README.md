@@ -26,7 +26,7 @@ Currently includes:
   * Direct fit
   * Trapezoid rule
 
-### ODEs
+### Initial Value Problems (ODEs)
   * Implicit Euler method
   * Explicit Euler method (for systems)
   * Modified midpoint method (for systems)
@@ -34,3 +34,6 @@ Currently includes:
   * Fourth order Runge Kutta (for systems)
   * Extrapolated modified midpoint method (for systems)
   * Adams-Bashforth-Moulton method (for systems)
+
+### Boundary Value Problems (ODEs)
+  * Equilibrium method
